@@ -21,11 +21,8 @@ A fun way to learn about Class Inheritance and Polymorphism in JAVA
 - Teacher will plugin the code for each student and watch the mayhem in the tournament class
 
 # todo list
- - refine attacks/defenses for each class
- - - 1 attack & 1 def for human/monster
- - - 1 special ability for h/m subclasses (4 total)
- - - 1 for each interface
  - create the battle method
+ - refine attacks/defenses for each class
  - include an image for the objects, must be a 200x200 png/jpg
  - 
  

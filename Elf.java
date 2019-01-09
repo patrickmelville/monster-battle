@@ -6,4 +6,9 @@ public class Elf extends Monster implements MagicUser {
         intelligence += 40;
         magic += 45;
     }
+
+    //attacking ability
+    public void poison(){
+        System.out.println("I can cast a spell that makes the air poisonous");
+    }
 }

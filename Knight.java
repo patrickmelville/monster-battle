@@ -7,4 +7,7 @@ public class Knight extends Human implements Fighter{
         intelligence += 15;
         magic += 0;
     }
+
+    //defensive ability
+    public void block(){ System.out.println("I can block attacks because I have a shield"); }
 }

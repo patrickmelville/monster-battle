@@ -11,4 +11,12 @@ public class Monster extends Being{
     public String communicate(String msg) {
         return name + " growls '" + msg + "'";
     }
+
+    //attacking ability
+    public void bite(){
+        System.out.println("I can bite because I am a rabid beast!");
+    }
+
+    //defensive ability
+    public void dodge(){ System.out.println("I can dodge attacks sometimes because I am a monster!"); }
 }

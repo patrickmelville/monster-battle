@@ -12,7 +12,11 @@ public class Human extends Being{
         return name + " says '" + msg + "'";
     }
 
+    //attacking ability
     public void punch(){
         System.out.println("I can punch because I have arms!");
     }
+
+    //defensive ability
+    public void bandage(){ System.out.println("I can bandage myself because I am a human"); }
 }

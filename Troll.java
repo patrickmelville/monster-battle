@@ -6,4 +6,10 @@ public class Troll extends Monster implements Fighter {
         intelligence += 0;
         magic += 0;
     }
+
+    //attacking ability
+    public void criticalHit(){
+        System.out.println("I can critically hit (extra damage) sometimes because I have sharp claws");
+    }
+
 }

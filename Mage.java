@@ -6,4 +6,10 @@ public class Mage extends Human implements MagicUser {
         intelligence += 45;
         magic += 35;
     }
+
+    //attacking/defensive ability
+    public void weaken(){
+        System.out.println("I can cast a weakening spell on my enemies");
+    }
+
 }
