@@ -29,8 +29,8 @@ A fun way to learn about Class Inheritance and Polymorphism in JAVA
 ## todo list
 
 - create the battle method
-  - add all objects into an ArrayList
-  - take first two items in AL and set them as Player1 and Player2
+  - ~~add all objects into an ArrayList~~
+  - ~~take first two items in AL and set them as Player1 and Player2~~
   - start the battle loop
     - P1 takes random action and player states are updated
     - P2 takes random action and player states are updated

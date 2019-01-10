@@ -1,23 +1,7 @@
 import java.util.ArrayList;
 
-public class MonsterGame {
-    public static void main(String[] args){
-
-        Being b1 = new Being("Being 1", 25,25,25,25);
-        Being h1 = new Human("Patrick", 25,25,25,25);
-        Being m1 = new Monster("Snarf", 25,25,25,25);
-
-        Knight h2 = new Knight("Arthur", 25,25,25,25);
-        Troll m2 = new Troll("Kronk", 25,25,25,25);
-
-        Mage h3 = new Mage("Gandalf", 50,0,25,25);
-        Elf m3 = new Elf("Morgana", 25,25,25,25);
-
-        System.out.println(h3);
-        test(h3);
-    }
-
-    public static void test(Being obj){
+public class WarriorTest {
+    public boolean test(Being obj){
         int statPoints;
         int testsPassed = 0;
         System.out.println("Hero Info: " + obj.getClass());
@@ -73,5 +57,6 @@ public class MonsterGame {
             System.out.println((obj.getClass().getInterfaces().length > 0) + " : Required Hero class implements an interface -- CURRENTLY NO INTERFACES");
         System.out.println(testsPassed);
 
+        return testsPassed == 8;
     }
 }
