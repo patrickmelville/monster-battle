@@ -10,37 +10,11 @@ public class MonsterGame {
         Knight h2 = new Knight("Arthur", 25,25,25,25);
         Troll m2 = new Troll("Kronk", 25,25,25,25);
 
-        Mage h3 = new Mage("Gandalf", 25,25,25,25);
+        Mage h3 = new Mage("Gandalf", 50,0,25,25);
         Elf m3 = new Elf("Morgana", 25,25,25,25);
 
-        System.out.println(b1);
-        System.out.println(b1.communicate("hello"));
-
-        System.out.println(h1);
-        System.out.println(h1.communicate("hello"));
-
-        System.out.println(m1);
-        System.out.println(m1.communicate("hello"));
-
-        System.out.println(h2);
-        System.out.println(h2.communicate("hello"));
-        h2.slash();
-
-        System.out.println(m2);
-        System.out.println(m2.communicate("hello"));
-        m2.slash();
-
         System.out.println(h3);
-        System.out.println(h3.communicate("hello"));
-        h3.cast();
-
-        System.out.println(m3);
-        System.out.println(m3.communicate("hello"));
-        m3.cast();
-
-        System.out.println("------------");
-        test(h2);
-        test(m3);
+        test(h3);
     }
 
     public static void test(Being obj){

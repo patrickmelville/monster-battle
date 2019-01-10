@@ -37,6 +37,7 @@ A fun way to learn about Class Inheritance and Polymorphism in JAVA
     - loop ends when P1 or P2 HP <= 0
 - refine attacks/defenses for each class
 - include an image for the objects, must be a 200x200 png/jpg
+- include a strict mode that also checks for negative stat values (purposfully allowed by defaul to see if students can find the "hack")
 
 (possibly... still thinking about this...)
 
