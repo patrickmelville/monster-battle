@@ -1,12 +1,12 @@
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-
 
 public class BattleGrounds extends Application{
     public void start(Stage stage){
@@ -64,6 +64,13 @@ public class BattleGrounds extends Application{
         player2.setX(350);
         player2.setY(100);
         root.getChildren().add(player2);
+
+        scene.setOnKeyPressed(event -> {
+            if (event.getCode().toString().equals("SPACE")) {
+                System.out.println("Move a step forward in the battle");
+            }
+
+        });
 
         //Adding a title to the window
         stage.setTitle("Monster Battle");
