@@ -23,18 +23,19 @@ public class BattleGrounds extends Application{
         contenderList.add(p2);
         contenderList.add(p3);
         contenderList.add(p4);
-        System.out.println(contenderList);
+//        System.out.println(contenderList);
 
         // test all warriors. Copy them to final list and output names of those who failed
         WarriorTest tester = new WarriorTest();
         for(Being warrior : contenderList){
             if(tester.test(warrior)){
                 playerList.add(warrior);
-                System.out.println(warrior.name + " has passed");
             }
         }
 
-        System.out.println(playerList);
+        for (Being warrior : playerList) {
+            System.out.println(warrior.name + " has passed all test and is prepared for battle.");
+        }
 
         //Creating a group
         Group root = new Group();
@@ -68,6 +69,9 @@ public class BattleGrounds extends Application{
         scene.setOnKeyPressed(event -> {
             if (event.getCode().toString().equals("SPACE")) {
                 System.out.println("Move a step forward in the battle");
+                System.out.println(playerList.get(0).name + " goes first. ");
+                System.out.println(doRandomAction(playerList.get(0)));
+
             }
 
         });
@@ -82,5 +86,19 @@ public class BattleGrounds extends Application{
 
     public static void main(String[] args){
         launch(args);
+    }
+
+    public static String doRandomAction(Being warrior){
+        double r = Math.floor(Math.random() * 4);
+        int random = (int)r;
+        System.out.println(warrior.getClass().getName().equals("Troll"));
+        if(warrior.getClass().getName().equals("Troll")){
+            switch (random){
+                case 0:
+                    System.out.println(warrior.getClass().getMethods()[0]);
+//                    warrior.getClass().getMethod("criticalHit", ); in progress
+            }
+        }
+        return "" + random;//warrior.communicate("I just did something in the battle");
     }
 }
