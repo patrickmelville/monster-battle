@@ -1,3 +1,5 @@
+package fighters;
+
 public class Knight extends Human implements Fighter{
 
     public Knight(String n, int h, int s, int i, int m){

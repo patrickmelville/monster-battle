@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import fighters.*;
 
 public class WarriorTest {
     public boolean test(Being obj){
@@ -6,20 +6,20 @@ public class WarriorTest {
         int testsPassed = 0;
         System.out.println("Hero Info: " + obj.getClass());
 
-        if (obj.getClass().getTypeName().equals("Knight") || obj.getClass().getTypeName().equals("Mage")){
-            System.out.println(obj.getClass().getSuperclass().getTypeName().equals("Human") + " : Required SuperClass == Human");
+        if (obj.getClass().getTypeName().equals("fighters.Knight") || obj.getClass().getTypeName().equals("fighters.Mage")){
+            System.out.println(obj.getClass().getSuperclass().getTypeName().equals("fighters.Human") + " : Required SuperClass == fighters.Human");
             testsPassed++;
-        }else if(obj.getClass().getTypeName().equals("Troll") || obj.getClass().getTypeName().equals("Elf")){
-            System.out.println(obj.getClass().getSuperclass().getTypeName().equals("Monster") + " : Required SuperClass == Monster");
+        }else if(obj.getClass().getTypeName().equals("fighters.Troll") || obj.getClass().getTypeName().equals("fighters.Elf")){
+            System.out.println(obj.getClass().getSuperclass().getTypeName().equals("fighters.Monster") + " : Required SuperClass == fighters.Monster");
             testsPassed++;
         }else{
-            System.out.println("FALSE : Required SuperClass != Knight/Mage => Human  || Troll/Elf => Monster");
+            System.out.println("FALSE : Required SuperClass != fighters.Knight/fighters.Mage => fighters.Human  || fighters.Troll/fighters.Elf => fighters.Monster");
         }
 
-        System.out.println(obj.getClass().getSuperclass().getSuperclass().getTypeName().equals("Being") + " : Required SuperClass == Being");
-        testsPassed = obj.getClass().getSuperclass().getSuperclass().getTypeName().equals("Being") ? testsPassed+1 : testsPassed;
+        System.out.println(obj.getClass().getSuperclass().getSuperclass().getTypeName().equals("fighters.Being") + " : Required SuperClass == fighters.Being");
+        testsPassed = obj.getClass().getSuperclass().getSuperclass().getTypeName().equals("fighters.Being") ? testsPassed+1 : testsPassed;
 
-        System.out.println((obj.name!=null) + " : Required Being has name - " + obj.name);
+        System.out.println((obj.name!=null) + " : Required fighters.Being has name - " + obj.name);
         testsPassed = obj.name!=null ? testsPassed+1 : testsPassed;
 
         statPoints = obj.hitPoints + obj.strength + obj.intelligence + obj.magic;
@@ -33,24 +33,24 @@ public class WarriorTest {
             System.out.println((obj.getClass().getInterfaces().length > 0) + " : Required Hero class implements an interface -- " + obj.getClass().getInterfaces()[0]);
             testsPassed = obj.getClass().getInterfaces().length > 0 ? testsPassed+1 : testsPassed;
 
-            if(obj.getClass().getInterfaces()[0].getName().equals("Fighter")){
-                System.out.print(obj.getClass().getInterfaces()[0].getName().equals("Fighter"));
-                System.out.println(" : Required Interface matches Class type. Knight/Troll => Fighter = " + obj.getClass().getInterfaces()[0].getName());
-                testsPassed = obj.getClass().getInterfaces()[0].getName().equals("Fighter") ? testsPassed+1 : testsPassed;
-            } else if(obj.getClass().getInterfaces()[0].getName().equals("MagicUser")){
-                System.out.print(obj.getClass().getInterfaces()[0].getName().equals("MagicUser"));
-                System.out.println(" : Required Interface matches Class type. Mage/Elf => MagicUser = " + obj.getClass().getInterfaces()[0].getName());
-                testsPassed = obj.getClass().getInterfaces()[0].getName().equals("MagicUser") ? testsPassed+1 : testsPassed;
-            }else{System.out.println("FALSE : Required Interface matches Class type. Mage/Elf => MagicUser");}
+            if(obj.getClass().getInterfaces()[0].getName().equals("fighters.Fighter")){
+                System.out.print(obj.getClass().getInterfaces()[0].getName().equals("fighters.Fighter"));
+                System.out.println(" : Required Interface matches Class type. fighters.Knight/fighters.Troll => fighters.Fighter = " + obj.getClass().getInterfaces()[0].getName());
+                testsPassed = obj.getClass().getInterfaces()[0].getName().equals("fighters.Fighter") ? testsPassed+1 : testsPassed;
+            } else if(obj.getClass().getInterfaces()[0].getName().equals("fighters.MagicUser")){
+                System.out.print(obj.getClass().getInterfaces()[0].getName().equals("fighters.MagicUser"));
+                System.out.println(" : Required Interface matches Class type. fighters.Mage/fighters.Elf => fighters.MagicUser = " + obj.getClass().getInterfaces()[0].getName());
+                testsPassed = obj.getClass().getInterfaces()[0].getName().equals("fighters.MagicUser") ? testsPassed+1 : testsPassed;
+            }else{System.out.println("FALSE : Required Interface matches Class type. fighters.Mage/fighters.Elf => fighters.MagicUser");}
 
-            if(obj.getClass().getInterfaces()[0].getName().equals("Fighter")){
+            if(obj.getClass().getInterfaces()[0].getName().equals("fighters.Fighter")){
                 System.out.print(obj.getClass().getInterfaces()[0].getDeclaredMethods()[0].getName().equals("slash"));
                 testsPassed = obj.getClass().getInterfaces()[0].getDeclaredMethods()[0].getName().equals("slash") ? testsPassed+1 : testsPassed;
-            } else if(obj.getClass().getInterfaces()[0].getName().equals("MagicUser")){
+            } else if(obj.getClass().getInterfaces()[0].getName().equals("fighters.MagicUser")){
                 System.out.print(obj.getClass().getInterfaces()[0].getDeclaredMethods()[0].getName().equals("cast"));
                 testsPassed = obj.getClass().getInterfaces()[0].getDeclaredMethods()[0].getName().equals("cast") ? testsPassed+1 : testsPassed;
             } else{System.out.println("FALSE");}
-            System.out.println(" : Required Interface contains correct default method. Fighter has slash() / MagicUser has cast() = " + obj.getClass().getInterfaces()[0].getDeclaredMethods()[0].getName());
+            System.out.println(" : Required Interface contains correct default method. fighters.Fighter has slash() / fighters.MagicUser has cast() = " + obj.getClass().getInterfaces()[0].getDeclaredMethods()[0].getName());
 
         }
         else

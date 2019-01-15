@@ -1,9 +1,13 @@
+package fighters;
+
 public class Being {
-    String name;
-    int hitPoints;
-    int strength;
-    int intelligence;
-    int magic;
+    public String name;
+    public int hitPoints;
+    public int strength;
+    public int intelligence;
+    public int magic;
+    // String for image filename???
+    // String[] for messages??
 
     public Being(String n, int h, int s, int i, int m){
         name = n;
@@ -17,7 +21,7 @@ public class Being {
     @Override
     public String toString() {
         String stats = "\n";
-        stats += name + " - " + this.getClass();
+        stats += name + " - " + this.getClass().getName();
         stats += "\nHP:  " + hitPoints;
         stats += "\nSTR: " + strength;
         stats += "\nINT: " + intelligence;

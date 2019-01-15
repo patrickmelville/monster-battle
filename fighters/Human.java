@@ -1,3 +1,5 @@
+package fighters;
+
 public class Human extends Being{
 
     public Human(String n, int h, int s, int i, int m){

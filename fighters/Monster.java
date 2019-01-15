@@ -1,3 +1,5 @@
+package fighters;
+
 public class Monster extends Being{
 
     public Monster(String n, int h, int s, int i, int m){
