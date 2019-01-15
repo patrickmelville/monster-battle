@@ -29,16 +29,16 @@ A fun way to learn about Class Inheritance and Polymorphism in JAVA
 ## todo list
 
 - create the battle method
-  - ~~add all objects into an ArrayList~~
-  - ~~take first two items in AL and set them as Player1 and Player2~~
-  - start the battle loop
-    - ~~Players take turns with random actions~~
-    - player stats are updated
-    - loop ends when P1 or P2 HP <= 0
-- refine attacks/defenses for each class
-- include custom descriptive messages for each action (4 + communicate)
-- include an image for the objects, must be a 200x200 png/jpg
-- include a strict mode that also checks for negative stat values (purposfully allowed by defaul to see if students can find the "cheat")
+  - [x] add all objects into an ArrayList
+  - [x] take first two items in AL and set them as Player1 and Player2
+  - [ ] start the battle loop
+    - [x] Players take turns with random actions
+    - [ ] player stats are updated
+    - [ ] loop ends when P1 or P2 HP <= 0
+- [ ] refine attacks/defenses for each class
+- [ ] include custom descriptive messages for each action (4 + communicate)
+- [ ] include an image for the objects, must be a 200x200 png/jpg
+- [ ] include a strict mode that also checks for negative stat values (purposfully allowed by defaul to see if students can find the "cheat")
 
 (possibly... still thinking about this...)
 
