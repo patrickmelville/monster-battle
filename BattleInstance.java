@@ -93,6 +93,5 @@ public class BattleInstance {
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             System.out.println("Error:\n" + e.getMessage());
         }
-//        return "" + random + methodName;
     }
 }

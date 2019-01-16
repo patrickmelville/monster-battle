@@ -76,7 +76,6 @@ public class BattleGrounds extends Application {
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode().toString().equals("SPACE")) {
-                System.out.println("Move a step forward in the battle");
                 battle.advanceBattle();
                 lastEvent.setText(battle.getLastAction());
             }
