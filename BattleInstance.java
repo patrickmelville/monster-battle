@@ -3,20 +3,21 @@ import fighters.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+
 public class BattleInstance {
     private Being player1;
     private Being player2;
     private String whoseTurn;    // "p1" or "p2" or ""
-    private String player1State; // ready or defending
-    private String player2State; // ready or defending
+    private boolean player1defending; // ready or defending
+    private boolean player2defending; // ready or defending
     private String[] lastAction = new String[2];
 
     public BattleInstance(Being p1, Being p2) {
         player1 = p1;
         player2 = p2;
         whoseTurn = "p1";
-        player1State = "ready";
-        player2State = "ready";
+        player1defending = false;
+        player2defending = false;
     }
 
     public Being getPlayer1() {
@@ -31,15 +32,15 @@ public class BattleInstance {
         return whoseTurn;
     }
 
-    public String getPlayer1State() {
-        return player1State;
+    public boolean isPlayer1defending() {
+        return player1defending;
     }
 
-    public String getPlayer2State() {
-        return player2State;
+    public boolean isPlayer2defending() {
+        return player2defending;
     }
 
-    public String getLastAction(){
+    public String getLastAction() {
         return lastAction[0] + " just did this: " + lastAction[1];
     }
 
@@ -51,25 +52,81 @@ public class BattleInstance {
         }
     }
 
-    public void updateStats(Being p) {
-        // update changes
-        // check for death
+    public void updateStats(Being attacker, Being victim, String actionName, int value) {
+        // update player stats
+        if (actionName.equals("weaken")) {
+            // remove value from both HP and STR of victim
+            victim.hitPoints -= value;
+            victim.strength -= value;
+        } else if (actionName.equals("bandage")) {
+            // add value to attacker's HP
+            attacker.hitPoints += value;
+        } else {
+            // all other DMG attacks remove value from victim's HP
+            // unless they are in defending state
+            if (getWhoseTurn().equals("p1")) {
+                if (!player2defending) {
+                    victim.hitPoints -= value;
+                }
+            }else{
+                if(!player1defending){
+                    victim.hitPoints -= value;
+                }
+            }
 
+
+        }
+    }
+
+    public void setDefendingStance(boolean state) {
+        if (getWhoseTurn().equals("p1")) {
+            player1defending = state;
+        } else {
+            player2defending = state;
+        }
     }
 
     public void advanceBattle() {
         // check for player death...
         // (here)
-        // if not... then next player does random action
+        // if both still alive, continue battle...
+        String[] completedAction; // example {"punch", "6"}
+        String actionName;
+        int statChange = 9001; // default is an impossible number
+        Being attacker;
+        Being victim;
         if (getWhoseTurn().equals("p1")) {
-            doRandomAction(getPlayer1());
+            attacker = getPlayer1();
+            victim = getPlayer2();
         } else {
-            doRandomAction(getPlayer2());
+            attacker = getPlayer2();
+            victim = getPlayer1();
+        }
+        // bring attacker out of defensive stance
+        setDefendingStance(false);
+        // now get a random action
+        completedAction = getRandomAction(attacker).split("-");
+        // set variables to update stats with
+        actionName = completedAction[0];
+        if (!actionName.equals("dodge") && !actionName.equals("block")) {
+            statChange = Integer.parseInt(completedAction[1]);
+            // then update the stats for the victim
+            updateStats(attacker, victim, actionName, statChange);
+        } else {
+            // else, update the attacker's status to "defending" instead because
+            // they are blocking/dodging if the dodge/block was a success
+            if (completedAction[1].equals("true")){
+                System.out.println("SUCCESSFUL Block/Dodge... you are protected for next round");
+                setDefendingStance(true);
+            }else{
+                // the block failed... still takes damage
+                System.out.println("Block/Dodge failed... GJ, you just wasted a turn");
+            }
         }
         changeTurn();
     }
 
-    public void doRandomAction(Being warrior) {
+    public String getRandomAction(Being warrior) {
         double r = Math.floor(Math.random() * 4);
         int random = (int) r;
         String methodName = "";
@@ -77,10 +134,8 @@ public class BattleInstance {
         // otherwise invoke class methods based on random number
         if (warrior.getClass().getMethods()[random].getName().equals("communicate")) {
             methodName = warrior.getClass().getMethods()[warrior.getClass().getMethods().length - 1].getName();
-            System.out.println(methodName);
         } else {
             methodName = warrior.getClass().getMethods()[random].getName();
-            System.out.println(methodName);
         }
         // update lastAction[] info with method name
         lastAction[0] = getWhoseTurn();
@@ -93,5 +148,8 @@ public class BattleInstance {
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             System.out.println("Error:\n" + e.getMessage());
         }
+
+        // return value from warrior action
+        return Math.random() > 0.5 ? methodName + "-" + 5 : "block-true"; // example value to be replaced later
     }
 }

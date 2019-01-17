@@ -78,12 +78,16 @@ public class BattleGrounds extends Application {
             if (event.getCode().toString().equals("SPACE")) {
                 battle.advanceBattle();
                 lastEvent.setText(battle.getLastAction());
+                player1.setText(playerList.get(0).toString());
+                player2.setText(playerList.get(1).toString());
+                System.out.println(battle.isPlayer1defending());
+                System.out.println(battle.isPlayer2defending());
             }
 
         });
 
         //Adding a title to the window
-        stage.setTitle("fighters.Monster Battle");
+        stage.setTitle("Monster Battle");
         //Adding scene to the stage
         stage.setScene(scene);
         //Displaying the contents of the stage
