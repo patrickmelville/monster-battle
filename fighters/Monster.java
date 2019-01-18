@@ -1,9 +1,9 @@
 package fighters;
 
-public class Monster extends Being{
+public class Monster extends Being {
 
-    public Monster(String n, int h, int s, int i, int m){
-        super(n,h,s,i,m);
+    public Monster(String n, int h, int s, int i, int m) {
+        super(n, h, s, i, m);
         hitPoints += 25;
         strength += 25;
         intelligence += 0;
@@ -15,10 +15,25 @@ public class Monster extends Being{
     }
 
     //attacking ability
-    public void bite(){
-        System.out.println("I can bite because I am a rabid beast!");
+    public int bite() {
+//        System.out.println("I can bite because I am a rabid beast!");
+        double range = (Math.random() * 5) - 3; // +-2
+        double power = strength / 15;
+        if (hitPoints <= 5) {
+            power += 3;
+        } // monsters bite harder when on the brink of death
+        return (int) Math.round(power + range);
     }
 
     //defensive ability
-    public void dodge(){ System.out.println("I can dodge attacks sometimes because I am a monster!"); }
+    public boolean dodge() {
+//        System.out.println("I can dodge attacks sometimes because I am a monster!");
+        double rand = Math.random();
+        double mod = intelligence/200;
+        // console.log(rand+mod)
+        if (rand+mod > 0.666)
+            return true;
+        else
+            return false;
+    }
 }

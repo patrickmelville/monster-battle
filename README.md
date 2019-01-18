@@ -37,6 +37,7 @@ A fun way to learn about Class Inheritance and Polymorphism in JAVA
     - [ ] fix the extremely broken block/dodge!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     - [x] player stats are updated
     - [ ] loop ends when P1 or P2 HP <= 0
+- [/] add functionality for all fighter battle methods (humans/monsters are done)
 - [x] refine attacks/defenses for each class
 - [ ] include custom descriptive messages for each action (4 + communicate)
 - [ ] include an image for the objects, must be a 200x200 png/jpg

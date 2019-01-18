@@ -129,7 +129,8 @@ public class BattleInstance {
     public String getRandomAction(Being warrior) {
         double r = Math.floor(Math.random() * 4);
         int random = (int) r;
-        String methodName = "";
+        String methodName;
+        String methodValue = "error";
         // if random number = index of "communicate" in list of methods use the "interface" method instead (always the last method in list)
         // otherwise invoke class methods based on random number
         if (warrior.getClass().getMethods()[random].getName().equals("communicate")) {
@@ -141,15 +142,15 @@ public class BattleInstance {
         lastAction[0] = getWhoseTurn();
         lastAction[1] = methodName;
 
-        // invoke the random action
+        // invoke the random actionb
         try {
             Method method = warrior.getClass().getMethod(methodName);
-            method.invoke(warrior);
+            methodValue = "" + method.invoke(warrior);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             System.out.println("Error:\n" + e.getMessage());
         }
 
         // return value from warrior action
-        return Math.random() > 0.5 ? methodName + "-" + 5 : "block-true"; // example value to be replaced later
+        return methodName + "-" + methodValue; // example value to be replaced later
     }
 }
