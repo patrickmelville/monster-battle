@@ -105,7 +105,8 @@ public class BattleInstance {
         // bring attacker out of defensive stance
         setDefendingStance(false);
         // now get a random action
-        completedAction = getRandomAction(attacker).split("-");
+        completedAction = getRandomAction(attacker).split("_");
+        System.out.println(completedAction[0] + " _ " + completedAction[1]);
         // set variables to update stats with
         actionName = completedAction[0];
         if (!actionName.equals("dodge") && !actionName.equals("block")) {
@@ -142,15 +143,27 @@ public class BattleInstance {
         lastAction[0] = getWhoseTurn();
         lastAction[1] = methodName;
 
-        // invoke the random actionb
+        // invoke the random action
         try {
-            Method method = warrior.getClass().getMethod(methodName);
-            methodValue = "" + method.invoke(warrior);
+            // First get value of interface methods that have parameters
+            // Then get value of all methods w/o parameters
+            if (methodName.equals("slash")){
+                Method method = warrior.getClass().getMethod(methodName, int.class, int.class);
+                methodValue = "" + method.invoke(warrior, warrior.strength, warrior. intelligence);
+            } else if(methodName.equals("cast")){
+                Method method = warrior.getClass().getMethod(methodName, int.class);
+                methodValue = "" + method.invoke(warrior, warrior.magic );
+            } else {
+                Method method = warrior.getClass().getMethod(methodName);
+                methodValue = "" + method.invoke(warrior);
+            }
+
+
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             System.out.println("Error:\n" + e.getMessage());
         }
 
         // return value from warrior action
-        return methodName + "-" + methodValue; // example value to be replaced later
+        return methodName + "_" + methodValue;
     }
 }

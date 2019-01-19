@@ -10,8 +10,11 @@ public class Troll extends Monster implements Fighter {
     }
 
     //attacking ability
-    public void criticalHit(){
+    public int criticalHit(){
         System.out.println("I can critically hit (extra damage) sometimes because I have sharp claws");
+        double range = Math.floor(Math.random() * 5)-2; // +-2
+        double power = strength/8.5;
+        return (int)Math.round(power+range);
     }
 
 }

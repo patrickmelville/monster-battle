@@ -16,17 +16,21 @@ public class Human extends Being {
 
     //attacking ability
     public int punch() {
-//        System.out.println("I can punch because I have arms!");
+        System.out.println("I can punch because I have arms!");
+        double range = Math.floor(Math.random() * 5)-2; // +-2
+        double power = (strength+1) / 10;
 
-        double range = (Math.random() * 5) - 3; // +-2
-        double power = strength / 10;
-        return (int) Math.round(power + range);
+        System.out.println(Math.random());
+        System.out.println(Math.round(power + range));
+
+
+        return (int) Math.round(Math.abs(power + range));
 
     }
 
     //defensive ability
     public int bandage() {
-//        System.out.println("I can bandage myself because I am a human");
+        System.out.println("I can bandage myself because I am a human");
         return (int) Math.floor(Math.random() * (intelligence / 8)) + 1;
     }
 }

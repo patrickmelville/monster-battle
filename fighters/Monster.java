@@ -16,8 +16,8 @@ public class Monster extends Being {
 
     //attacking ability
     public int bite() {
-//        System.out.println("I can bite because I am a rabid beast!");
-        double range = (Math.random() * 5) - 3; // +-2
+        System.out.println("I can bite because I am a rabid beast!");
+        double range = Math.floor(Math.random() * 5)-2; // +-2
         double power = strength / 15;
         if (hitPoints <= 5) {
             power += 3;
@@ -27,7 +27,7 @@ public class Monster extends Being {
 
     //defensive ability
     public boolean dodge() {
-//        System.out.println("I can dodge attacks sometimes because I am a monster!");
+        System.out.println("I can dodge attacks sometimes because I am a monster!");
         double rand = Math.random();
         double mod = intelligence/200;
         // console.log(rand+mod)
