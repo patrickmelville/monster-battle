@@ -11,16 +11,16 @@ import java.util.ArrayList;
 public class BattleGrounds extends Application {
     public void start(Stage stage) {
         // create objects for all players in the Battle Tournament
-        Troll p1 = new Troll("Moblin", 25, 25, 25, 25);
+        Troll p1 = new Troll("Moblin", 25, 25, 50, 0);
         Mage p2 = new Mage("Gandalf", 45, 10, 20, 25);
-        Knight p3 = new Knight("Link", 25, 25, 25, 25);
+        Knight p3 = new Knight("Link", 50, 25, 25, 0);
         Elf p4 = new Elf("Legolas", 25, 25, 25, 25);
 
         // add all player objects into an ArrayList
         ArrayList<Being> contenderList = new ArrayList<>();
         ArrayList<Being> playerList = new ArrayList<>();
         contenderList.add(p1);
-        contenderList.add(p2);
+//        contenderList.add(p2);
         contenderList.add(p3);
         contenderList.add(p4);
 

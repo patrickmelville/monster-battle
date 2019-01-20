@@ -10,12 +10,13 @@ public class BattleInstance {
     private String whoseTurn;    // "p1" or "p2" or ""
     private boolean player1defending; // ready or defending
     private boolean player2defending; // ready or defending
-    private String[] lastAction = new String[2];
+    private String lastAction;
+    private String lastValue;
 
     public BattleInstance(Being p1, Being p2) {
         player1 = p1;
         player2 = p2;
-        whoseTurn = "p1";
+        whoseTurn = player1.name;
         player1defending = false;
         player2defending = false;
     }
@@ -41,14 +42,51 @@ public class BattleInstance {
     }
 
     public String getLastAction() {
-        return lastAction[0] + " just did this: " + lastAction[1];
+        String event = "";
+        String victim = getWhoseTurn().equals(player1.name) ? player1.name : player2.name;
+        String attacker = victim.equals(player1.name) ? player2.name : player1.name;
+        switch (lastAction){
+
+            case "punch":
+            case "weaken":
+            case "slash":
+            case "poison":
+                event = lastAction + "ed " + victim + " (" + lastValue + ")";
+                break;
+            case "bandage":
+                event = lastAction + "d" + " (" + lastValue + ")";
+                break;
+            case "dodge":
+                if (lastValue.equals("true"))
+                    event = "dodged the next attack.";
+                else
+                    event = "failed to dodge the next attack.";
+                break;
+            case "block":
+                if (lastValue.equals("true"))
+                    event = "blocked the next attack.";
+                else
+                    event = "failed to block the next attack.";
+                break;
+            case "bite":
+                event = "bit " + victim + " (" + lastValue + ")";;
+                break;
+            case "criticalHit":
+                event = "critically hit " + victim + " (" + lastValue + ")";;
+                break;
+            case "cast":
+                event = lastAction + " a fireball at " + victim + " (" + lastValue + ")";
+                break;
+        }
+
+        return attacker + " " + event;
     }
 
     public void changeTurn() {
-        if (getWhoseTurn().equals("p1")) {
-            whoseTurn = "p2";
+        if (getWhoseTurn().equals(player1.name)) {
+            whoseTurn = player2.name;
         } else {
-            whoseTurn = "p1";
+            whoseTurn = player1.name;
         }
     }
 
@@ -64,7 +102,7 @@ public class BattleInstance {
         } else {
             // all other DMG attacks remove value from victim's HP
             // unless they are in defending state
-            if (getWhoseTurn().equals("p1")) {
+            if (getWhoseTurn().equals(player1.name)) {
                 if (!player2defending) {
                     victim.hitPoints -= value;
                 }
@@ -79,7 +117,7 @@ public class BattleInstance {
     }
 
     public void setDefendingStance(boolean state) {
-        if (getWhoseTurn().equals("p1")) {
+        if (getWhoseTurn().equals(player1.name)) {
             player1defending = state;
         } else {
             player2defending = state;
@@ -95,7 +133,7 @@ public class BattleInstance {
         int statChange = 9001; // default is an impossible number
         Being attacker;
         Being victim;
-        if (getWhoseTurn().equals("p1")) {
+        if (getWhoseTurn().equals(player1.name)) {
             attacker = getPlayer1();
             victim = getPlayer2();
         } else {
@@ -139,9 +177,8 @@ public class BattleInstance {
         } else {
             methodName = warrior.getClass().getMethods()[random].getName();
         }
-        // update lastAction[] info with method name
-        lastAction[0] = getWhoseTurn();
-        lastAction[1] = methodName;
+        // update lastAction info with method name
+        lastAction = methodName; // "(" + methodValue + ") " +
 
         // invoke the random action
         try {
@@ -157,7 +194,7 @@ public class BattleInstance {
                 Method method = warrior.getClass().getMethod(methodName);
                 methodValue = "" + method.invoke(warrior);
             }
-
+            lastValue = methodValue;
 
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             System.out.println("Error:\n" + e.getMessage());
