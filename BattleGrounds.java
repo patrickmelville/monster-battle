@@ -27,7 +27,7 @@ public class BattleGrounds extends Application {
         // test all warriors. Copy them to final list and output names of those who failed
         WarriorTest tester = new WarriorTest();
         for (Being warrior : contenderList) {
-            if (tester.test(warrior)) {
+            if (tester.testWarrior(warrior)) {
                 playerList.add(warrior);
             }
         }
