@@ -1,15 +1,16 @@
 import fighters.*;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 
 public class WarriorTest {
 
     public static void main(String[] args){
-        Troll p1 = new Troll("Moblin", 50, 50, 0, 0);
+        Troll p1 = new Troll("Moblin", 50, 50, 20, 0);
         Mage p2 = new Mage("Gandalf", 45, 10, 20, 25);
         Knight p3 = new Knight("Link", 25, 25, 25, 25);
         Elf p4 = new Elf("Legolas", 0, 25, 25, 25);
-        var test1 = new WarriorTest();
+        WarriorTest test1 = new WarriorTest();
 
         test1.testWarrior(p1);
         System.out.println(p1);
@@ -40,7 +41,7 @@ public class WarriorTest {
                 boolean kTest5 = fighter.hitPoints >=20 && fighter.strength >= 15 && fighter.intelligence >= 65;
                 System.out.println(kTest5 + " --> hp>=20 / str>=15 / intel>=65");
                 // test has methods (3 + communicate)
-                var kMethods = fighter.getClass().getSuperclass().getDeclaredMethods();
+                Method[] kMethods = fighter.getClass().getSuperclass().getDeclaredMethods();
                 String list[] = {kMethods[0].getName(),kMethods[1].getName(),kMethods[2].getName()};
                 boolean kTest6 = Arrays.stream(list).anyMatch("communicate" ::equals);
                 System.out.println(kTest6 + " --> has communicate() method");
@@ -80,7 +81,7 @@ public class WarriorTest {
                 boolean mTest5 = fighter.hitPoints > 0 && fighter.magic >= 35 && fighter.intelligence >= 95;
                 System.out.println(mTest5 + " --> hp>=1 / int>=95 / mag>=35");
                 // test has methods (3 + communicate)
-                var mMethods = fighter.getClass().getSuperclass().getDeclaredMethods();
+                Method[] mMethods = fighter.getClass().getSuperclass().getDeclaredMethods();
                 String mlist[] = {mMethods[0].getName(),mMethods[1].getName(),mMethods[2].getName()};
                 boolean mTest6 = Arrays.stream(mlist).anyMatch("communicate" ::equals);
                 System.out.println(mTest6 + " --> has communicate() method");
@@ -120,7 +121,7 @@ public class WarriorTest {
                 boolean tTest5 = fighter.hitPoints >=50 && fighter.strength >= 50;
                 System.out.println(tTest5 + " --> hp>=50 / str>=50");
                 // test has methods (3 + communicate)
-                var tMethods = fighter.getClass().getSuperclass().getDeclaredMethods();
+                Method[] tMethods = fighter.getClass().getSuperclass().getDeclaredMethods();
                 String tList[] = {tMethods[0].getName(),tMethods[1].getName(),tMethods[2].getName()};
                 boolean tTest6 = Arrays.stream(tList).anyMatch("communicate" ::equals);
                 System.out.println(tTest6 + " --> has communicate() method");
@@ -160,7 +161,7 @@ public class WarriorTest {
                 boolean eTest5 = fighter.hitPoints > 0 && fighter.magic >= 45 && fighter.intelligence >= 40;
                 System.out.println(eTest5 + " --> hp>=1 / int>=40 / mag>=45");
                 // test has methods (3 + communicate)
-                var eMethods = fighter.getClass().getSuperclass().getDeclaredMethods();
+                Method[] eMethods = fighter.getClass().getSuperclass().getDeclaredMethods();
                 String elist[] = {eMethods[0].getName(),eMethods[1].getName(),eMethods[2].getName()};
                 boolean eTest6 = Arrays.stream(elist).anyMatch("communicate" ::equals);
                 System.out.println(eTest6 + " --> has communicate() method");
