@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 public class BattleInstance {
     private Being player1;
     private Being player2;
+    private Being winner;
     private String whoseTurn;    // "p1" or "p2" or ""
     private boolean player1defending; // ready or defending
     private boolean player2defending; // ready or defending
@@ -41,11 +42,19 @@ public class BattleInstance {
         return player2defending;
     }
 
+    public Being getWinner(){ return winner; }
+
+    public void setWinner(Being w){
+        winner = w;
+    }
+
     public String getLastAction() {
         // if a player has died, set death message
         if (player1.hitPoints <= 0){
+            setWinner(player2);
             return player2.name + " has defeated " + player1.name;
         } else if (player2.hitPoints <= 0){
+            setWinner(player1);
             return player1.name + " has defeated " + player2.name;
         }
         // generate event String if both players are alive

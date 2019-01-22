@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class BattleGrounds extends Application {
+
+    private static BattleInstance battle;
+
     public void start(Stage stage) {
         // create objects for all players in the Battle Tournament
         Troll p1 = new Troll("Moblin", 25, 25, 50, 0);
@@ -20,7 +23,7 @@ public class BattleGrounds extends Application {
         ArrayList<Being> contenderList = new ArrayList<>();
         ArrayList<Being> playerList = new ArrayList<>();
         contenderList.add(p1);
-//        contenderList.add(p2);
+        contenderList.add(p2);
         contenderList.add(p3);
         contenderList.add(p4);
 
@@ -37,7 +40,8 @@ public class BattleGrounds extends Application {
         }
 
         //Creating a BattleInstance
-        BattleInstance battle = new BattleInstance(playerList.get(0), playerList.get(1));
+//        BattleInstance battle = new BattleInstance(playerList.get(0), playerList.get(1));
+        battle = new BattleInstance(playerList.get(0), playerList.get(1));
         //Creating a group
         Group root = new Group();
         //Create scene with group
@@ -76,10 +80,18 @@ public class BattleGrounds extends Application {
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode().toString().equals("SPACE")) {
-                battle.advanceBattle();
-                lastEvent.setText(battle.getLastAction());
-                player1.setText(playerList.get(0).toString());
-                player2.setText(playerList.get(1).toString());
+                // if there is still no winner
+                if(battle.getWinner() == null) {
+                    battle.advanceBattle();
+                    lastEvent.setText(battle.getLastAction());
+                    player1.setText(playerList.get(0).toString());
+                    player2.setText(playerList.get(1).toString());
+                } else{  // else start a new battle
+                    System.out.println("START A NEW BATTLE");
+                    // update the playerList: loser is removed and winner goes to the end
+                    // (here)
+                    battle = new BattleInstance(playerList.get(0), playerList.get(1));
+                }
             }
 
         });
