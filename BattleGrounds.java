@@ -80,8 +80,6 @@ public class BattleGrounds extends Application {
                 lastEvent.setText(battle.getLastAction());
                 player1.setText(playerList.get(0).toString());
                 player2.setText(playerList.get(1).toString());
-                System.out.println("player 1 state: " + battle.isPlayer1defending());
-                System.out.println("player 2 state: " + battle.isPlayer2defending());
             }
 
         });

@@ -42,10 +42,17 @@ public class BattleInstance {
     }
 
     public String getLastAction() {
+        // if a player has died, set death message
+        if (player1.hitPoints <= 0){
+            return player2.name + " has defeated " + player1.name;
+        } else if (player2.hitPoints <= 0){
+            return player1.name + " has defeated " + player2.name;
+        }
+        // generate event String if both players are alive
         String event = "";
         String victim = getWhoseTurn().equals(player1.name) ? player1.name : player2.name;
         String attacker = victim.equals(player1.name) ? player2.name : player1.name;
-        switch (lastAction){
+        switch (lastAction) {
 
             case "punch":
             case "weaken":
@@ -69,10 +76,12 @@ public class BattleInstance {
                     event = "failed to block the next attack.";
                 break;
             case "bite":
-                event = "bit " + victim + " (" + lastValue + ")";;
+                event = "bit " + victim + " (" + lastValue + ")";
+                ;
                 break;
             case "criticalHit":
-                event = "critically hit " + victim + " (" + lastValue + ")";;
+                event = "critically hit " + victim + " (" + lastValue + ")";
+                ;
                 break;
             case "cast":
                 event = lastAction + " a fireball at " + victim + " (" + lastValue + ")";
@@ -106,8 +115,8 @@ public class BattleInstance {
                 if (!player2defending) {
                     victim.hitPoints -= value;
                 }
-            }else{
-                if(!player1defending){
+            } else {
+                if (!player1defending) {
                     victim.hitPoints -= value;
                 }
             }
@@ -125,44 +134,45 @@ public class BattleInstance {
     }
 
     public void advanceBattle() {
-        // check for player death...
-        // (here)
-        // if both still alive, continue battle...
-        String[] completedAction; // example {"punch", "6"}
-        String actionName;
-        int statChange = 9001; // default is an impossible number
-        Being attacker;
-        Being victim;
-        if (getWhoseTurn().equals(player1.name)) {
-            attacker = getPlayer1();
-            victim = getPlayer2();
-        } else {
-            attacker = getPlayer2();
-            victim = getPlayer1();
-        }
-        // bring attacker out of defensive stance
-        setDefendingStance(false);
-        // now get a random action
-        completedAction = getRandomAction(attacker).split("_");
-        System.out.println(completedAction[0] + " _ " + completedAction[1]);
-        // set variables to update stats with
-        actionName = completedAction[0];
-        if (!actionName.equals("dodge") && !actionName.equals("block")) {
-            statChange = Integer.parseInt(completedAction[1]);
-            // then update the stats for the victim
-            updateStats(attacker, victim, actionName, statChange);
-        } else {
-            // else, update the attacker's status to "defending" instead because
-            // they are blocking/dodging if the dodge/block was a success
-            if (completedAction[1].equals("true")){
-                System.out.println("SUCCESSFUL Block/Dodge... you are protected for next round");
-                setDefendingStance(true);
-            }else{
-                // the block failed... still takes damage
-                System.out.println("Block/Dodge failed... GJ, you just wasted a turn");
+        // if both players still alive, continue battle...
+        if (player1.hitPoints > 0 && player2.hitPoints > 0) {
+
+            String[] completedAction; // example {"punch", "6"}
+            String actionName;
+            int statChange = 9001; // default is an impossible number
+            Being attacker;
+            Being victim;
+            if (getWhoseTurn().equals(player1.name)) {
+                attacker = getPlayer1();
+                victim = getPlayer2();
+            } else {
+                attacker = getPlayer2();
+                victim = getPlayer1();
             }
+            // bring attacker out of defensive stance
+            setDefendingStance(false);
+            // now get a random action
+            completedAction = getRandomAction(attacker).split("_");
+            System.out.println(completedAction[0] + " _ " + completedAction[1]);
+            // set variables to update stats with
+            actionName = completedAction[0];
+            if (!actionName.equals("dodge") && !actionName.equals("block")) {
+                statChange = Integer.parseInt(completedAction[1]);
+                // then update the stats for the victim
+                updateStats(attacker, victim, actionName, statChange);
+            } else {
+                // else, update the attacker's status to "defending" instead because
+                // they are blocking/dodging if the dodge/block was a success
+                if (completedAction[1].equals("true")) {
+                    System.out.println("SUCCESSFUL Block/Dodge... you are protected for next round");
+                    setDefendingStance(true);
+                } else {
+                    // the block failed... still takes damage
+                    System.out.println("Block/Dodge failed... GJ, you just wasted a turn");
+                }
+            }
+            changeTurn();
         }
-        changeTurn();
     }
 
     public String getRandomAction(Being warrior) {
@@ -184,12 +194,12 @@ public class BattleInstance {
         try {
             // First get value of interface methods that have parameters
             // Then get value of all methods w/o parameters
-            if (methodName.equals("slash")){
+            if (methodName.equals("slash")) {
                 Method method = warrior.getClass().getMethod(methodName, int.class, int.class);
-                methodValue = "" + method.invoke(warrior, warrior.strength, warrior. intelligence);
-            } else if(methodName.equals("cast")){
+                methodValue = "" + method.invoke(warrior, warrior.strength, warrior.intelligence);
+            } else if (methodName.equals("cast")) {
                 Method method = warrior.getClass().getMethod(methodName, int.class);
-                methodValue = "" + method.invoke(warrior, warrior.magic );
+                methodValue = "" + method.invoke(warrior, warrior.magic);
             } else {
                 Method method = warrior.getClass().getMethod(methodName);
                 methodValue = "" + method.invoke(warrior);

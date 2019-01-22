@@ -36,7 +36,7 @@ A fun way to learn about Class Inheritance and Polymorphism in JAVA
     - [x] fix block/dodge
     - [x] player stats are updated
     - [x] fix battle action info for lastEvent.setText() in JavaFX window
-    - [ ] loop ends when P1 or P2 HP <= 0
+    - [x] loop ends when P1 or P2 HP <= 0
     - [ ] after first battle, program moves to next two players
 - [x] add functionality for all fighter battle methods 
 - [x] refine attacks/defenses for each class
