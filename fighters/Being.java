@@ -21,7 +21,7 @@ public class Being {
     @Override
     public String toString() {
         String stats = "\n";
-        stats += name + " - " + this.getClass().getName();
+        stats += name + " the " + this.getClass().getName().split("\\.")[1];
         stats += "\nHP:  " + hitPoints;
         stats += "\nSTR: " + strength;
         stats += "\nINT: " + intelligence;
