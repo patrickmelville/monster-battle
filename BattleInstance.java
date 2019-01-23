@@ -38,10 +38,17 @@ public class BattleInstance {
     public void setP2Original(int h, int s, int i, int m){p2Original = new int[]{h,s,i,m};}
 
     public void restoreOriginal(Being p){
-        p.hitPoints = p1Original[0];
-        p.strength = p1Original[1];
-        p.intelligence = p1Original[2];
-        p.magic = p1Original[3];
+        if (p.name.equals(player1.name)) {
+            p.hitPoints = p1Original[0];
+            p.strength = p1Original[1];
+            p.intelligence = p1Original[2];
+            p.magic = p1Original[3];
+        } else if(p.name.equals(player2.name)){
+            p.hitPoints = p2Original[0];
+            p.strength = p2Original[1];
+            p.intelligence = p2Original[2];
+            p.magic = p2Original[3];
+        }
     }
 
     public String getWhoseTurn() {
