@@ -17,11 +17,24 @@ public class BattleGrounds extends Application {
     private static BattleInstance battle;
 
     public void start(Stage stage) throws FileNotFoundException {
+        // load images
+        Image knightImage = new Image(new FileInputStream("src/knightPic.gif"));
+        Image mageImage = new Image(new FileInputStream("src/magePic.jpg"));
+        Image trollImage = new Image(new FileInputStream("src/trollPic.png"));
+        Image elfImage = new Image(new FileInputStream("src/elfPic.jpg"));
         // create objects for all players in the Battle Tournament
+
         Troll p1 = new Troll("Moblin", 25, 25, 50, 0);
+        String p1Pic = "src/trollPic.png";
+
         Mage p2 = new Mage("Gandalf", 45, 10, 20, 25);
+        String p2Pic = "src/magePic.jpg";
+
         Knight p3 = new Knight("Link", 50, 25, 25, 0);
+        String p3Pic = "src/knightPic.gif";
+
         Elf p4 = new Elf("Legolas", 25, 25, 25, 25);
+        String p4Pic = "src/elfPic.jpg";
 
         // add all player objects into an ArrayList
         ArrayList<Being> contenderList = new ArrayList<>();
@@ -83,8 +96,7 @@ public class BattleGrounds extends Application {
         root.getChildren().add(lastEvent);
 
         // create new Image object for p1
-        Image p1Image = new Image(new FileInputStream("src/knightPic.gif"));
-        ImageView p1ImageView = new ImageView(p1Image);
+        ImageView p1ImageView = new ImageView(trollImage);
         p1ImageView.setX(50);
         p1ImageView.setY(100);
         p1ImageView.setFitHeight(200);
@@ -92,8 +104,7 @@ public class BattleGrounds extends Application {
         root.getChildren().add(p1ImageView);
 
         // create new Image object for p1
-        Image p2Image = new Image(new FileInputStream("src/knightPic.gif"));
-        ImageView p2ImageView = new ImageView(p2Image);
+        ImageView p2ImageView = new ImageView(mageImage);
         p2ImageView.setX(450);
         p2ImageView.setY(100);
         p2ImageView.setFitHeight(200);
