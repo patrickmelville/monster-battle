@@ -42,6 +42,6 @@ A fun way to learn about Class Inheritance and Polymorphism in JAVA
 - [x] refine attacks/defenses for each class
 - [ ] include custom descriptive messages for battle start/end (communicate args)
 - [ ] include an image for the objects, must be a 200x200 png/jpg
-- [ ] include a strict mode that also checks for negative stat values (purposfully allowed by defaul to see if students can find the "cheat")
+- [ ] include a strict mode that also checks for negative stat values
 
 ### Phase 4: Create Your Own Monsters and Customize your Actions
