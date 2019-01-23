@@ -20,12 +20,7 @@ public class Human extends Being {
         double range = Math.floor(Math.random() * 5)-2; // +-2
         double power = (strength+1) / 10;
 
-        System.out.println(Math.random());
-        System.out.println(Math.round(power + range));
-
-
         return (int) Math.round(Math.abs(power + range));
-
     }
 
     //defensive ability

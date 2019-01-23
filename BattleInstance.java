@@ -128,6 +128,7 @@ public class BattleInstance {
             // remove value from both HP and STR of victim
             victim.hitPoints -= value;
             victim.strength -= value;
+            attacker.hitPoints += value;
         } else if (actionName.equals("bandage")) {
             // add value to attacker's HP
             attacker.hitPoints += value;
