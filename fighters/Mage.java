@@ -12,7 +12,7 @@ public class Mage extends Human implements MagicUser {
     //attacking/defensive ability
     public int weaken(){
         System.out.println("I can cast a weakening spell on my enemies");
-        return (int)Math.floor(Math.random()*(magic/8)) + 1;
+        return (int)Math.floor(Math.random()*(magic/8.5)) + 1;
     }
 
 }

@@ -133,13 +133,18 @@ public class BattleInstance {
         // update player stats
         if (actionName.equals("weaken")) {
             // remove value from both HP and STR of victim
+            //
             victim.hitPoints -= value;
             victim.strength -= value;
-            attacker.hitPoints += value;
+            attacker.hitPoints += value/2;
         } else if (actionName.equals("bandage")) {
             // add value to attacker's HP
             attacker.hitPoints += value;
-        } else {
+        } else if(actionName.equals("poison")){
+            victim.hitPoints -= value;
+            attacker.hitPoints += value/2;
+            attacker.strength += value/2;
+        }else {
             // all other DMG attacks remove value from victim's HP
             // unless they are in defending state
             if (getWhoseTurn().equals(player1.name)) {

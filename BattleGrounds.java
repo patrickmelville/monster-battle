@@ -24,7 +24,7 @@ public class BattleGrounds extends Application {
         Image elfImage = new Image(new FileInputStream("src/elfPic.jpg"));
         // create objects for all players in the Battle Tournament
 
-        Troll p1 = new Troll("Moblin", 25, 25, 50, 0);
+        Troll p1 = new Troll("Moblin", 25, 60, 15, 0);
         String p1Pic = "src/trollPic.png";
 
         Mage p2 = new Mage("Gandalf", 45, 10, 20, 25);
@@ -33,16 +33,16 @@ public class BattleGrounds extends Application {
         Knight p3 = new Knight("Link", 50, 25, 25, 0);
         String p3Pic = "src/knightPic.gif";
 
-        Elf p4 = new Elf("Legolas", 25, 25, 25, 25);
+        Elf p4 = new Elf("Legolas", 25, 0, 35, 40);
         String p4Pic = "src/elfPic.jpg";
 
         // add all player objects into an ArrayList
         ArrayList<Being> contenderList = new ArrayList<>();
         ArrayList<Being> playerList = new ArrayList<>();
-        contenderList.add(p1);
+        contenderList.add(p4);
         contenderList.add(p2);
         contenderList.add(p3);
-        contenderList.add(p4);
+        contenderList.add(p1);
 
         // test all warriors. Copy them to final list and output names of those who failed
         WarriorTest tester = new WarriorTest();

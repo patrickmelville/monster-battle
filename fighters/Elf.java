@@ -12,6 +12,6 @@ public class Elf extends Monster implements MagicUser {
     //attacking ability
     public int poison(){
         System.out.println("I can cast a spell that makes the air poisonous");
-        return (int)Math.floor(Math.random()*(((magic+intelligence)/2)/6)) + 1;
+        return (int)Math.floor(Math.random()*(((magic+intelligence)/2)/5)) + 1;
     }
 }

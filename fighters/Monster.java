@@ -22,7 +22,9 @@ public class Monster extends Being {
         if (hitPoints <= 5) {
             power += 3;
         } // monsters bite harder when on the brink of death
-        return (int) Math.round(power + range);
+        int result = (int) Math.round(power + range);
+        result = result < 1 ? 1 : result;
+        return result;
     }
 
     //defensive ability
