@@ -7,6 +7,8 @@ import java.lang.reflect.Method;
 public class BattleInstance {
     private Being player1;
     private Being player2;
+    private int[] p1Original;
+    private int[] p2Original;
     private Being winner;
     private String whoseTurn;    // "p1" or "p2" or ""
     private boolean player1defending; // ready or defending
@@ -17,6 +19,8 @@ public class BattleInstance {
     public BattleInstance(Being p1, Being p2) {
         player1 = p1;
         player2 = p2;
+        setP1Original(p1.hitPoints, p1.strength, p1.intelligence, p1.magic);
+        setP2Original(p2.hitPoints, p2.strength, p2.intelligence, p2.magic);
         whoseTurn = player1.name;
         player1defending = false;
         player2defending = false;
@@ -28,6 +32,16 @@ public class BattleInstance {
 
     public Being getPlayer2() {
         return player2;
+    }
+
+    public void setP1Original(int h, int s, int i, int m){p1Original = new int[]{h,s,i,m};}
+    public void setP2Original(int h, int s, int i, int m){p2Original = new int[]{h,s,i,m};}
+
+    public void restoreOriginal(Being p){
+        p.hitPoints = p1Original[0];
+        p.strength = p1Original[1];
+        p.intelligence = p1Original[2];
+        p.magic = p1Original[3];
     }
 
     public String getWhoseTurn() {

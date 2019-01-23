@@ -2,17 +2,21 @@ import fighters.*;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class BattleGrounds extends Application {
 
     private static BattleInstance battle;
 
-    public void start(Stage stage) {
+    public void start(Stage stage) throws FileNotFoundException {
         // create objects for all players in the Battle Tournament
         Troll p1 = new Troll("Moblin", 25, 25, 50, 0);
         Mage p2 = new Mage("Gandalf", 45, 10, 20, 25);
@@ -61,14 +65,14 @@ public class BattleGrounds extends Application {
         Text player1 = new Text();
         player1.setText(playerList.get(0).toString());
         player1.setX(50);
-        player1.setY(100);
+        player1.setY(300);
         root.getChildren().add(player1);
 
         // create new text to print out being 2 info
         Text player2 = new Text();
         player2.setText(playerList.get(1).toString());
         player2.setX(450);
-        player2.setY(100);
+        player2.setY(300);
         root.getChildren().add(player2);
 
         // create new Text for last battle event
@@ -77,6 +81,24 @@ public class BattleGrounds extends Application {
         lastEvent.setX(250);
         lastEvent.setY(225);
         root.getChildren().add(lastEvent);
+
+        // create new Image object for p1
+        Image p1Image = new Image(new FileInputStream("src/knightPic.gif"));
+        ImageView p1ImageView = new ImageView(p1Image);
+        p1ImageView.setX(50);
+        p1ImageView.setY(100);
+        p1ImageView.setFitHeight(200);
+        p1ImageView.setFitWidth(200);
+        root.getChildren().add(p1ImageView);
+
+        // create new Image object for p1
+        Image p2Image = new Image(new FileInputStream("src/knightPic.gif"));
+        ImageView p2ImageView = new ImageView(p2Image);
+        p2ImageView.setX(450);
+        p2ImageView.setY(100);
+        p2ImageView.setFitHeight(200);
+        p2ImageView.setFitWidth(200);
+        root.getChildren().add(p2ImageView);
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode().toString().equals("SPACE")) {
@@ -88,9 +110,18 @@ public class BattleGrounds extends Application {
                     player2.setText(playerList.get(1).toString());
                 } else{  // else start a new battle
                     System.out.println("START A NEW BATTLE");
-                    // update the playerList: loser is removed and winner goes to the end
-                    // (here)
+                    // update the playerList: winner to end w/ orig stats & loser removed
+                    battle.restoreOriginal(battle.getWinner());
+                    playerList.add(battle.getWinner());
+                    playerList.remove(0);
+                    playerList.remove(0);
+
+                    // new battle is created and visuals are updated
+                    System.out.println(playerList);
                     battle = new BattleInstance(playerList.get(0), playerList.get(1));
+                    lastEvent.setText("Two new warriors approach. A new battle is about to begin!");
+                    player1.setText(playerList.get(0).toString());
+                    player2.setText(playerList.get(1).toString());
                 }
             }
 
