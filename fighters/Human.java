@@ -18,7 +18,7 @@ public class Human extends Being {
     public int punch() {
         System.out.println("I can punch because I have arms!");
         double range = Math.floor(Math.random() * 5)-2; // +-2
-        double power = (strength+1) / 10;
+        double power = (strength+1) / 9;
 
         return (int) Math.round(Math.abs(power + range));
     }
@@ -26,6 +26,9 @@ public class Human extends Being {
     //defensive ability
     public int bandage() {
         System.out.println("I can bandage myself because I am a human");
-        return (int) Math.floor(Math.random() * (intelligence / 8)) + 1;
+        double range = Math.floor(Math.random() * 5)-2; // +-2
+        double power = Math.floor(intelligence/12);
+        System.out.println(range);
+        return (int) Math.round(power - range);
     }
 }

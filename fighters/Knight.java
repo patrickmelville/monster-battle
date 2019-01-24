@@ -13,11 +13,6 @@ public class Knight extends Human implements Fighter {
     //defensive ability
     public boolean block() {
         System.out.println("I can block attacks because I have a shield");
-        double rand = Math.random();
-        double mod = strength / 100;
-        if (rand + mod > 0.666)
-            return true;
-        else
-            return false;
+        return true;
     }
 }

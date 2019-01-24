@@ -27,10 +27,10 @@ public class BattleGrounds extends Application {
         Troll p1 = new Troll("Moblin", 25, 60, 15, 0);
         String p1Pic = "src/trollPic.png";
 
-        Mage p2 = new Mage("Gandalf", 45, 10, 20, 25);
+        Mage p2 = new Mage("Gandalf", 34, 0, 23, 43);
         String p2Pic = "src/magePic.jpg";
 
-        Knight p3 = new Knight("Link", 50, 25, 25, 0);
+        Knight p3 = new Knight("Link", 30, 30, 40, 0);
         String p3Pic = "src/knightPic.gif";
 
         Elf p4 = new Elf("Legolas", 25, 0, 35, 40);
@@ -39,10 +39,10 @@ public class BattleGrounds extends Application {
         // add all player objects into an ArrayList
         ArrayList<Being> contenderList = new ArrayList<>();
         ArrayList<Being> playerList = new ArrayList<>();
-        contenderList.add(p4);
+        contenderList.add(p1);
         contenderList.add(p2);
         contenderList.add(p3);
-        contenderList.add(p1);
+        contenderList.add(p4);
 
         // test all warriors. Copy them to final list and output names of those who failed
         WarriorTest tester = new WarriorTest();
@@ -62,14 +62,14 @@ public class BattleGrounds extends Application {
         //Creating a group
         Group root = new Group();
         //Create scene with group
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 1200, 800);
 
         //Create and setup a title Text object
         Text title = new Text();
         title.setText("Welcome to Codémon!");
         title.setX(scene.getWidth() / 3);
         title.setY(50);
-        title.setFont(Font.font("Arial", 20));
+        title.setFont(Font.font("Arial", 40));
         //Add title to the group
         root.getChildren().add(title);
 
@@ -78,37 +78,40 @@ public class BattleGrounds extends Application {
         Text player1 = new Text();
         player1.setText(playerList.get(0).toString());
         player1.setX(50);
-        player1.setY(300);
+        player1.setY(400);
+        player1.setFont(Font.font("Arial", 30));
         root.getChildren().add(player1);
 
         // create new text to print out being 2 info
         Text player2 = new Text();
         player2.setText(playerList.get(1).toString());
-        player2.setX(450);
-        player2.setY(300);
+        player2.setX(550);
+        player2.setY(400);
+        player2.setFont(Font.font("Arial", 30));
         root.getChildren().add(player2);
 
         // create new Text for last battle event
         Text lastEvent = new Text();
         lastEvent.setText("The Battle is about to begin...");
         lastEvent.setX(250);
-        lastEvent.setY(225);
+        lastEvent.setY(725);
+        lastEvent.setFont(Font.font("Arial", 30));
         root.getChildren().add(lastEvent);
 
         // create new Image object for p1
         ImageView p1ImageView = new ImageView(trollImage);
         p1ImageView.setX(50);
         p1ImageView.setY(100);
-        p1ImageView.setFitHeight(200);
-        p1ImageView.setFitWidth(200);
+        p1ImageView.setFitHeight(300);
+        p1ImageView.setFitWidth(300);
         root.getChildren().add(p1ImageView);
 
         // create new Image object for p1
         ImageView p2ImageView = new ImageView(mageImage);
-        p2ImageView.setX(450);
+        p2ImageView.setX(550);
         p2ImageView.setY(100);
-        p2ImageView.setFitHeight(200);
-        p2ImageView.setFitWidth(200);
+        p2ImageView.setFitHeight(300);
+        p2ImageView.setFitWidth(300);
         root.getChildren().add(p2ImageView);
 
         scene.setOnKeyPressed(event -> {
@@ -133,6 +136,14 @@ public class BattleGrounds extends Application {
                     lastEvent.setText("Two new warriors approach. A new battle is about to begin!");
                     player1.setText(playerList.get(0).toString());
                     player2.setText(playerList.get(1).toString());
+                    if(playerList.get(0).getClass().getName().equals("fighters.Knight")){p1ImageView.setImage(knightImage);}
+                    if(playerList.get(0).getClass().getName().equals("fighters.Mage")){p1ImageView.setImage(mageImage);}
+                    if(playerList.get(0).getClass().getName().equals("fighters.Troll")){p1ImageView.setImage(trollImage);}
+                    if(playerList.get(0).getClass().getName().equals("fighters.Elf")){p1ImageView.setImage(elfImage);}
+                    if(playerList.get(1).getClass().getName().equals("fighters.Knight")){p2ImageView.setImage(knightImage);}
+                    if(playerList.get(1).getClass().getName().equals("fighters.Mage")){p2ImageView.setImage(mageImage);}
+                    if(playerList.get(1).getClass().getName().equals("fighters.Troll")){p2ImageView.setImage(trollImage);}
+                    if(playerList.get(1).getClass().getName().equals("fighters.Elf")){p2ImageView.setImage(elfImage);}
                 }
             }
 

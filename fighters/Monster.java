@@ -33,7 +33,7 @@ public class Monster extends Being {
         double rand = Math.random();
         double mod = intelligence/200;
         // console.log(rand+mod)
-        if (rand+mod > 0.666)
+        if (rand+mod > 0.866)
             return true;
         else
             return false;
