@@ -17,24 +17,24 @@ public class BattleGrounds extends Application {
     private static BattleInstance battle;
 
     public void start(Stage stage) throws FileNotFoundException {
-        // load images
+        // create objects for all players in the Battle Tournament
+        Troll p1 = new Troll("Moblin", 25, 60, 15, 0);
+        Mage p2 = new Mage("Gandalf", 34, 0, 23, 43);
+        Knight p3 = new Knight("Link", 30, 30, 40, 0, "src/linkCustom.png");
+        Elf p4 = new Elf("Legolas", 25, 0, 35, 40);
+        Troll p5 = new Troll("Moblin2", 25, 60, 15, 0, "src/testCustom.gif");
+        Knight p6 = new Knight("Link2", 30, 30, 40, 0);
+
+        //load custom images
+        ArrayList<LocatedImage> customImages = new ArrayList<>();
+        customImages.add(new LocatedImage("src/linkCustom.png"));
+        customImages.add(new LocatedImage("src/testCustom.gif"));
+
+        // load default images
         Image knightImage = new Image(new FileInputStream("src/knightPic.gif"));
         Image mageImage = new Image(new FileInputStream("src/magePic.jpg"));
         Image trollImage = new Image(new FileInputStream("src/trollPic.png"));
         Image elfImage = new Image(new FileInputStream("src/elfPic.jpg"));
-        // create objects for all players in the Battle Tournament
-
-        Troll p1 = new Troll("Moblin", 25, 60, 15, 0);
-        String p1Pic = "src/trollPic.png";
-
-        Mage p2 = new Mage("Gandalf", 34, 0, 23, 43);
-        String p2Pic = "src/magePic.jpg";
-
-        Knight p3 = new Knight("Link", 30, 30, 40, 0);
-        String p3Pic = "src/knightPic.gif";
-
-        Elf p4 = new Elf("Legolas", 25, 0, 35, 40);
-        String p4Pic = "src/elfPic.jpg";
 
         // add all player objects into an ArrayList
         ArrayList<Being> contenderList = new ArrayList<>();
@@ -43,6 +43,8 @@ public class BattleGrounds extends Application {
         contenderList.add(p2);
         contenderList.add(p3);
         contenderList.add(p4);
+        contenderList.add(p5);
+        contenderList.add(p6);
 
         // test all warriors. Copy them to final list and output names of those who failed
         WarriorTest tester = new WarriorTest();
@@ -136,14 +138,31 @@ public class BattleGrounds extends Application {
                     lastEvent.setText("Two new warriors approach. A new battle is about to begin!");
                     player1.setText(playerList.get(0).toString());
                     player2.setText(playerList.get(1).toString());
-                    if(playerList.get(0).getClass().getName().equals("fighters.Knight")){p1ImageView.setImage(knightImage);}
-                    if(playerList.get(0).getClass().getName().equals("fighters.Mage")){p1ImageView.setImage(mageImage);}
-                    if(playerList.get(0).getClass().getName().equals("fighters.Troll")){p1ImageView.setImage(trollImage);}
-                    if(playerList.get(0).getClass().getName().equals("fighters.Elf")){p1ImageView.setImage(elfImage);}
-                    if(playerList.get(1).getClass().getName().equals("fighters.Knight")){p2ImageView.setImage(knightImage);}
-                    if(playerList.get(1).getClass().getName().equals("fighters.Mage")){p2ImageView.setImage(mageImage);}
-                    if(playerList.get(1).getClass().getName().equals("fighters.Troll")){p2ImageView.setImage(trollImage);}
-                    if(playerList.get(1).getClass().getName().equals("fighters.Elf")){p2ImageView.setImage(elfImage);}
+
+                    if (playerList.get(0).imageLocation == null) {
+                        if (playerList.get(0).getClass().getName().equals("fighters.Knight")) {p1ImageView.setImage(knightImage);}
+                        if (playerList.get(0).getClass().getName().equals("fighters.Mage")) {p1ImageView.setImage(mageImage);}
+                        if (playerList.get(0).getClass().getName().equals("fighters.Troll")) {p1ImageView.setImage(trollImage);}
+                        if (playerList.get(0).getClass().getName().equals("fighters.Elf")) {p1ImageView.setImage(elfImage);}
+                    } else{
+                        for( LocatedImage i : customImages){
+                            if (i.getURL().equals(playerList.get(0).imageLocation)){
+                                p1ImageView.setImage(i);
+                            }
+                        }
+                    }
+                    if (playerList.get(1).imageLocation == null){
+                        if(playerList.get(1).getClass().getName().equals("fighters.Knight")){p2ImageView.setImage(knightImage);}
+                        if(playerList.get(1).getClass().getName().equals("fighters.Mage")){p2ImageView.setImage(mageImage);}
+                        if(playerList.get(1).getClass().getName().equals("fighters.Troll")){p2ImageView.setImage(trollImage);}
+                        if(playerList.get(1).getClass().getName().equals("fighters.Elf")){p2ImageView.setImage(elfImage);}
+                    }else{
+                        for( LocatedImage i : customImages){
+                            if (i.getURL().equals(playerList.get(1).imageLocation)){
+                                p2ImageView.setImage(i);
+                            }
+                        }
+                    }
                 }
             }
 
@@ -160,4 +179,18 @@ public class BattleGrounds extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+    class LocatedImage extends Image {
+        private final String url;
+
+        public LocatedImage(String url) throws FileNotFoundException{
+            super(new FileInputStream(url));
+            this.url = url;
+        }
+
+        public String getURL() {
+            return url;
+        }
+    }
+
 }

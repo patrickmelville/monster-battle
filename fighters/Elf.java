@@ -8,6 +8,13 @@ public class Elf extends Monster implements MagicUser {
         intelligence += 15;
         magic += 25;
     }
+    public Elf(String n, int h, int s, int i, int m, String loc){
+        super(n,h,s,i,m,loc);
+        hitPoints -= 0;
+        strength += 10;
+        intelligence += 15;
+        magic += 25;
+    }
 
     //attacking ability
     public int poison(){

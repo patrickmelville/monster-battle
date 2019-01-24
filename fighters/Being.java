@@ -6,7 +6,8 @@ public class Being {
     public int strength;
     public int intelligence;
     public int magic;
-    // String for image filename???
+    // String for image filename
+    public String imageLocation;
     // String[] for messages??
 
     public Being(String n, int h, int s, int i, int m){
@@ -16,6 +17,14 @@ public class Being {
         intelligence = i;
         magic = m;
 
+    }
+    public Being(String n, int h, int s, int i, int m, String loc){
+        name = n;
+        hitPoints = h;
+        strength = s;
+        intelligence = i;
+        magic = m;
+        imageLocation = loc;
     }
 
     @Override

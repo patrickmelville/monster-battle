@@ -9,6 +9,13 @@ public class Human extends Being {
         intelligence += 50;
         magic += 0;
     }
+    public Human(String n, int h, int s, int i, int m, String loc) {
+        super(n, h, s, i, m, loc);
+        hitPoints += 0;
+        strength += 0;
+        intelligence += 50;
+        magic += 0;
+    }
 
     public String communicate(String msg) {
         return name + " says '" + msg + "'";

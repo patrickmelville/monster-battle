@@ -29,12 +29,8 @@ A fun way to learn about Class Inheritance and Polymorphism in JAVA
 ## To Do List
 
 - [ ] finish the battle loop
-    - [x] after first battle, program moves to next two players
     - [ ] set up different ending for final fight in playerList 
     - [ ] announce VICTORY ROYAL
-- [ ] refine attacks/defenses for MagicUsers (they seem too weak)
-- [ ] include an image for the objects, must be a 200x200 png/jpg
-- [ ] include a strict mode that also checks for negative stat values
 - [ ] include custom descriptive messages for battle start/end (communicate args)
 
 ### Phase 4: Create Your Own Monsters and Customize your Actions

@@ -8,6 +8,13 @@ public class Mage extends Human implements MagicUser {
         intelligence += 25;
         magic += 25;
     }
+    public Mage(String n, int h, int s, int i, int m, String loc){
+        super(n,h,s,i,m,loc);
+        hitPoints -= 0;
+        strength -= 0;
+        intelligence += 25;
+        magic += 25;
+    }
 
     //attacking/defensive ability
     public int weaken(){
