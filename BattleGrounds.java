@@ -19,21 +19,45 @@ public class BattleGrounds extends Application {
 
     public void start(Stage stage) throws FileNotFoundException {
         // create objects for all players in the Battle Tournament
-        Troll p1 = new Troll("Moblin", 25, 60, 15, 0);
-        Mage p2 = new Mage("Gandalf", 34, 0, 23, 43);
-        Knight p3 = new Knight("Link", 30, 30, 40, 0, "src/linkCustom.png");
-        Elf p4 = new Elf("Legolas", 25, 0, 35, 40);
-        Troll p5 = new Troll("Moblin2", 25, 60, 15, 0, "src/testCustom.gif");
-        Knight p6 = new Knight("Link2", 30, 30, 40, 0);
+        // student code goes here. Ensure that they have named their variable correctly
+        Mage p1 = new Mage("Fire Reaper",50,20,20,10);
+        Troll p2 = new Troll("Mugiwara",40,50,10,0);
+        Knight p3 = new Knight("OH YEAH YEAH",45,21,5,29,"src/giphy.gif");
+        Knight p4 = new Knight ("BRUH BRUH BRUH !!!",20,15,15,50);
+        Mage p5 = new Mage("Ness",1,1,49,49,"src/SansGif.gif");
+        Knight p6 = new Knight("Big Man Jerome", 25, 75, 0, 0);
+        Mage p7 = new Mage("B",20, 15, 25, 40);
+        Mage p8 = new Mage ("Cake", 25, 25, 25, 25);
+        Troll p9 = new Troll("MAX CHUNGUS", 40, 40,20, 0, "src/max chungus.png");
+        Troll p11 = new Troll("???", 50, 50, 0, 0);
+        Elf p12 = new Elf("afjkhsdfjknasdkvjnaskgj",11,37,21,31);
+        Troll p13 = new Troll("Idk if this one wins so whatever", 25, 25, 25, 25, "src/simons.jpg");
+        Mage p17 = new Mage("Sans",25,0,35,40, "src/SansGif.gif");
+        Knight p19 = new Knight("BCBFGFB", 25,25,25,25);
+        Troll p20 = new Troll("DvREEEEE", 25, 60, 15, 0, "src/1234.gif");
+        Troll p21 = new Troll("Lizard Squad", 100, 0, 0, 0);
+
+
+        // cheater battle
+//        Troll c1 = new Troll("Hatkid", 536870911, 1610612735, 1, -2147483547, "src/testCustom.gif");
+//        Troll c2 = new Troll("Simon", 2147483597, 2147483597, -2147483447, -2147483647, "src/simons.jpg");
 
         //load custom images
         ArrayList<LocatedImage> customImages = new ArrayList<>();
-        customImages.add(new LocatedImage("src/linkCustom.png"));
+        customImages.add(new LocatedImage("src/toonLinkPic.gif"));
         customImages.add(new LocatedImage("src/testCustom.gif"));
+        customImages.add(new LocatedImage("src/1234.gif"));
+        customImages.add(new LocatedImage("src/simons.jpg"));
+        customImages.add(new LocatedImage("src/max chungus.png"));
+        customImages.add(new LocatedImage("src/Luffy_Activates_Gear_Fourth.png"));
+//        customImages.add(new LocatedImage("src/sans.gif"));
+        customImages.add(new LocatedImage("src/SansGif.gif"));
+        customImages.add(new LocatedImage("src/giphy.gif"));
+
 
         // load default images
         Image background = new Image(new FileInputStream("src/bg.jpg"));
-        Image knightImage = new Image(new FileInputStream("src/knightPic.gif"));
+        Image knightImage = new Image(new FileInputStream("src/knightPic.png"));
         Image mageImage = new Image(new FileInputStream("src/magePic.jpg"));
         Image trollImage = new Image(new FileInputStream("src/trollPic.png"));
         Image elfImage = new Image(new FileInputStream("src/elfPic.jpg"));
@@ -41,12 +65,32 @@ public class BattleGrounds extends Application {
         // add all player objects into an ArrayList
         ArrayList<Being> contenderList = new ArrayList<>();
         ArrayList<Being> playerList = new ArrayList<>();
+
+//        contenderList.add(c1);
+//        contenderList.add(c2);
+
         contenderList.add(p1);
         contenderList.add(p2);
         contenderList.add(p3);
         contenderList.add(p4);
         contenderList.add(p5);
         contenderList.add(p6);
+        contenderList.add(p7);
+        contenderList.add(p8);
+        contenderList.add(p9);
+        //contenderList.add(p10);
+        contenderList.add(p11);
+        contenderList.add(p12);
+        contenderList.add(p13);
+        //contenderList.add(p14);
+        //contenderList.add(p15);
+        //contenderList.add(p16);
+        contenderList.add(p17);
+        //contenderList.add(p18);
+        contenderList.add(p19);
+        contenderList.add(p20);
+        contenderList.add(p21);
+        //contenderList.add(p22);
 
         // test all warriors. Copy them to final list and output names of those who failed
         WarriorTest tester = new WarriorTest();
@@ -112,7 +156,7 @@ public class BattleGrounds extends Application {
         root.getChildren().add(lastEvent);
 
         // create new Image object for p1
-        ImageView p1ImageView = new ImageView(trollImage);
+        ImageView p1ImageView = new ImageView(mageImage);
         p1ImageView.setX(50);
         p1ImageView.setY(100);
         p1ImageView.setFitHeight(300);
@@ -120,7 +164,7 @@ public class BattleGrounds extends Application {
         root.getChildren().add(p1ImageView);
 
         // create new Image object for p1
-        ImageView p2ImageView = new ImageView(mageImage);
+        ImageView p2ImageView = new ImageView(trollImage);
         p2ImageView.setX(550);
         p2ImageView.setY(100);
         p2ImageView.setFitHeight(300);
