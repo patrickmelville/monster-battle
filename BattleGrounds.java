@@ -4,6 +4,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -31,6 +32,7 @@ public class BattleGrounds extends Application {
         customImages.add(new LocatedImage("src/testCustom.gif"));
 
         // load default images
+        Image background = new Image(new FileInputStream("src/bg.jpg"));
         Image knightImage = new Image(new FileInputStream("src/knightPic.gif"));
         Image mageImage = new Image(new FileInputStream("src/magePic.jpg"));
         Image trollImage = new Image(new FileInputStream("src/trollPic.png"));
@@ -64,14 +66,22 @@ public class BattleGrounds extends Application {
         //Creating a group
         Group root = new Group();
         //Create scene with group
-        Scene scene = new Scene(root, 1200, 800);
+        Scene scene = new Scene(root, 920, 675, Color.BLACK);
+
+        // Create and add BG imageView
+        ImageView bgView = new ImageView(background);
+        bgView.setX(0);
+        bgView.setY(0);
+        bgView.setFitWidth(920);
+        bgView.setFitHeight(675);
+        root.getChildren().add(bgView);
 
         //Create and setup a title Text object
         Text title = new Text();
         title.setText("Welcome to Codémon!");
-        title.setX(scene.getWidth() / 3);
+        title.setX(scene.getWidth() / 4);
         title.setY(50);
-        title.setFont(Font.font("Arial", 40));
+        title.setFont(Font.font("Impact", 40));
         //Add title to the group
         root.getChildren().add(title);
 
@@ -81,7 +91,7 @@ public class BattleGrounds extends Application {
         player1.setText(playerList.get(0).toString());
         player1.setX(50);
         player1.setY(400);
-        player1.setFont(Font.font("Arial", 30));
+        player1.setFont(Font.font("Consolas", 30));
         root.getChildren().add(player1);
 
         // create new text to print out being 2 info
@@ -89,15 +99,16 @@ public class BattleGrounds extends Application {
         player2.setText(playerList.get(1).toString());
         player2.setX(550);
         player2.setY(400);
-        player2.setFont(Font.font("Arial", 30));
+        player2.setFont(Font.font("Consolas", 30));
         root.getChildren().add(player2);
 
         // create new Text for last battle event
         Text lastEvent = new Text();
         lastEvent.setText("The Battle is about to begin...");
-        lastEvent.setX(250);
-        lastEvent.setY(725);
-        lastEvent.setFont(Font.font("Arial", 30));
+        lastEvent.setX(200);
+        lastEvent.setY(655);
+        lastEvent.setFont(Font.font("Verdana", 30));
+        lastEvent.setFill(Color.RED);
         root.getChildren().add(lastEvent);
 
         // create new Image object for p1
