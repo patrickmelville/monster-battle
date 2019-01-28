@@ -78,7 +78,7 @@ public class WarriorTest {
                 boolean mTest4 = (fighter.hitPoints + fighter.strength + fighter.intelligence + fighter.magic) == 200;
                 System.out.println(mTest4 + " --> stat points equal 200");
                 // test type specific stat minimums
-                boolean mTest5 = fighter.hitPoints > 0 && fighter.magic >= 35 && fighter.intelligence >= 95;
+                boolean mTest5 = fighter.hitPoints > 0 && fighter.magic >= 25 && fighter.intelligence >= 75;
                 System.out.println(mTest5 + " --> hp>=1 / int>=95 / mag>=35");
                 // test has methods (3 + communicate)
                 Method[] mMethods = fighter.getClass().getSuperclass().getDeclaredMethods();

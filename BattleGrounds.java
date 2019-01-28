@@ -32,7 +32,7 @@ public class BattleGrounds extends Application {
         Troll p11 = new Troll("???", 50, 50, 0, 0);
         Elf p12 = new Elf("afjkhsdfjknasdkvjnaskgj",11,37,21,31);
         Troll p13 = new Troll("Idk if this one wins so whatever", 25, 25, 25, 25, "src/simons.jpg");
-        Mage p17 = new Mage("Sans",25,0,35,40, "src/SansGif.gif");
+        Mage p17 = new Mage("Sans",25,0,35,40, "src/sans3.gif");
         Knight p19 = new Knight("BCBFGFB", 25,25,25,25);
         Troll p20 = new Troll("DvREEEEE", 25, 60, 15, 0, "src/1234.gif");
         Troll p21 = new Troll("Lizard Squad", 100, 0, 0, 0);
@@ -50,7 +50,7 @@ public class BattleGrounds extends Application {
         customImages.add(new LocatedImage("src/simons.jpg"));
         customImages.add(new LocatedImage("src/max chungus.png"));
         customImages.add(new LocatedImage("src/Luffy_Activates_Gear_Fourth.png"));
-//        customImages.add(new LocatedImage("src/sans.gif"));
+        customImages.add(new LocatedImage("src/sans3.gif"));
         customImages.add(new LocatedImage("src/SansGif.gif"));
         customImages.add(new LocatedImage("src/giphy.gif"));
 
