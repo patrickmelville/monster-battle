@@ -31,6 +31,8 @@ A fun way to learn about Class Inheritance and Polymorphism in JAVA
 - [ ] finish the battle loop
     - [ ] set up different ending for final fight in playerList 
     - [ ] announce VICTORY ROYAL
-- [ ] include custom descriptive messages for battle start/end (communicate args)
+- [ ] split battle to two different modes
+    - [ ] fastforward - auto randomize attacks until there is a champion (current mode)
+    - [ ] user selected - players can control their character's actions with menu of choices (turn based Pokémon RPG style)
 
 ### Phase 4: Create Your Own Monsters and Customize your Actions
